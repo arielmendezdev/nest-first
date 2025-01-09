@@ -23,6 +23,8 @@ require('dotenv').config();
           rejectUnauthorized: false,
         },
       },
+      autoLoadModels: true,
+      synchronize: true,
     }),
     UsersModule,
   ],
