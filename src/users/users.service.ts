@@ -3,7 +3,6 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from 'src/database/models/users.model';
 import { InjectModel } from '@nestjs/sequelize';
-import { Task } from 'src/database/models/task.model';
 
 
 @Injectable()
