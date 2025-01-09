@@ -17,7 +17,12 @@ require('dotenv').config();
       database: process.env.PGDATABASE,
       password: process.env.PGPASSWORD,
       models: [Task, User],
-      ssl: false,
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false, 
+        },
+      },
     }),
     UsersModule,
   ],
