@@ -17,14 +17,6 @@ require('dotenv').config();
       database: process.env.PGDATABASE || process.env.DB_DATABASE,
       password: process.env.PGPASSWORD || process.env.DB_PASSWORD,
       models: [Task, User],
-      dialectOptions: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false,
-        },
-      },
-      autoLoadModels: true,
-      synchronize: true,
     }),
     UsersModule,
   ],
