@@ -4,6 +4,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { UsersModule } from './users/users.module';
 import { Task } from './database/models/task.model';
 import { User } from './database/models/users.model';
+import { HomeModule } from './home/home.module';
 require('dotenv').config();
 
 @Module({
@@ -19,6 +20,7 @@ require('dotenv').config();
       models: [Task, User],
     }),
     UsersModule,
+    HomeModule,
   ],
   controllers: [],
   providers: [],
