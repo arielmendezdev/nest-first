@@ -11,16 +11,16 @@ require('dotenv').config();
     TasksModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: process.env.PGHOST,
+      host: process.env.PGHOST || process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT),
-      username: process.env.PGUSER,
-      database: process.env.PGDATABASE,
-      password: process.env.PGPASSWORD,
+      username: process.env.PGUSER || process.env.DB_USERNAME,
+      database: process.env.PGDATABASE || process.env.DB_DATABASE,
+      password: process.env.PGPASSWORD || process.env.DB_PASSWORD,
       models: [Task, User],
       dialectOptions: {
         ssl: {
           require: true,
-          rejectUnauthorized: false, 
+          rejectUnauthorized: false,
         },
       },
     }),
