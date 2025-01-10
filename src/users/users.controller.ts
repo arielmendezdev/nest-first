@@ -16,32 +16,39 @@ export class UsersController {
     @Req() req: Request,
   ) {
     try {
-        const newUser = await this.usersService.create(createUserDto);
-        return res.send(newUser);
+      const newUser = await this.usersService.create(createUserDto);
+      res.status(200).json(newUser);
     } catch (error) {
-        return res.send(error);
+      return res.send(error);
     }
   }
 
   @Get()
-  findAll() {
+  findAll(@Res() res: Response, @Req() req: Request) {
     const users = this.usersService.findAll();
-    return users
+    res.status(200).json(users);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string ) {
+  findOne(@Param('id') id: string, @Res() res: Response, @Req() req: Request) {
     const user = this.usersService.findOne(id);
-    return user;
+    res.status(200).json(user);
   }
-
+  
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateUserDto: UpdateUserDto,
+    @Res() res: Response,
+    @Req() req: Request,
+  ) {
+    const userUpdate = this.usersService.update(id, updateUserDto);
+    res.status(200).json(userUpdate);
   }
-
+  
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
+  remove(@Param('id') id: string, @Res() res: Response, @Req() req: Request) {
+    const userDeleted = this.usersService.remove(id);
+    res.status(200).json(userDeleted);
   }
 }

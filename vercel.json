@@ -10,13 +10,19 @@
     {
       "src": "/(.*)",
       "dest": "src/main.ts",
-      "methods": [
-        "GET",
-        "POST",
-        "PATCH",
-        "PUT",
-        "DELETE"
-      ]
+      "methods": ["GET", "POST", "PATCH", "PUT", "DELETE"]
+    }
+  ],
+  "functions": {
+    "api/longTask.js": {
+      "runtime": "nodejs16.x",
+      "maxDuration": 15
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/longTask",
+      "schedule": "0 */1 * * *"
     }
   ]
 }

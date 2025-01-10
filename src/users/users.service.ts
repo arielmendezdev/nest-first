@@ -48,7 +48,7 @@ export class UsersService {
         isDeleted: true
       })
       await user.save()
-      return 'User deleted'
+      return user
     } catch (error) {
         return error
     }
