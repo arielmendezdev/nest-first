@@ -4,6 +4,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { UsersModule } from './users/users.module';
 import { Task } from './database/models/task.model';
 import { User } from './database/models/users.model';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 require('dotenv').config();
 
 @Module({
@@ -11,16 +13,26 @@ require('dotenv').config();
     TasksModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: process.env.PGHOST || process.env.DB_HOST,
+      // host: process.env.PGHOST || process.env.DB_HOST,
+      // username: process.env.PGUSER || process.env.DB_USERNAME,
+      // database: process.env.PGDATABASE || process.env.DB_DATABASE,
+      // password: process.env.PGPASSWORD || process.env.DB_PASSWORD,
       port: parseInt(process.env.DB_PORT),
-      username: process.env.PGUSER || process.env.DB_USERNAME,
-      database: process.env.PGDATABASE || process.env.DB_DATABASE,
-      password: process.env.PGPASSWORD || process.env.DB_PASSWORD,
+      username: process.env.PGUSER,
+      password: process.env.PGPASSWORD,
+      database: process.env.PGDATABASE,
+      host: process.env.PGHOST,
+      dialectOptions: {
+        ssl: {
+          require: true, // Requiere SSL
+          rejectUnauthorized: false, // Si es un certificado auto-firmado
+        },
+      },
       models: [Task, User],
     }),
     UsersModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

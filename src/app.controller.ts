@@ -11,14 +11,13 @@ import {
 } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller('tasks')
-export class TasksController {
+@Controller()
+export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
   findAll() {
-    return "Wellcome to de nest page"
-    // return this.appService.findAll();
+    return this.appService.findAll();
   }
 
 }
