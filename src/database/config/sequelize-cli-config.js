@@ -11,6 +11,12 @@ module.exports = {
     password: process.env.PGPASSWORD,
     database: process.env.PGDATABASE,
     host: process.env.PGHOST,
+    dialectOptions: {
+      ssl: {
+        require: true, // Requiere SSL
+        rejectUnauthorized: false, // Si es un certificado auto-firmado
+      },
+    },
   },
   test: {
     username: process.env.DB_USERNAME,
@@ -18,6 +24,12 @@ module.exports = {
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
     dialect: 'postgres',
+    dialectOptions: {
+      ssl: {
+        require: true, // Requiere SSL
+        rejectUnauthorized: false, // Si es un certificado auto-firmado
+      },
+    },
   },
   production: {
     dialect: 'postgres',
@@ -29,5 +41,11 @@ module.exports = {
     password: process.env.PGPASSWORD,
     database: process.env.PGDATABASE,
     host: process.env.PGHOST,
+    dialectOptions: {
+      ssl: {
+        require: true, // Requiere SSL
+        rejectUnauthorized: false, // Si es un certificado auto-firmado
+      },
+    },
   },
 };
