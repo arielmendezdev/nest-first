@@ -6,6 +6,7 @@ import { Task } from './database/models/task.model';
 import { User } from './database/models/users.model';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import pg from 'pg';
 require('dotenv').config();
 
 @Module({
@@ -22,6 +23,7 @@ require('dotenv').config();
       password: process.env.PGPASSWORD,
       database: process.env.PGDATABASE,
       host: process.env.PGHOST,
+      dialectModule: pg,
       dialectOptions: {
         ssl: {
           require: true, // Requiere SSL
